@@ -15,9 +15,7 @@ class Devise::RegistrationsController < DeviseController
   # POST /resource
   def create
     resource = build_resource(sign_up_params)
-
     r = resource_class.where(email: resource.email).first
-
     if r and r.provider != 'email' #register before !
       r.provider = 'email'
       r.email = resource.email
