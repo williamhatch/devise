@@ -16,7 +16,18 @@ class Devise::RegistrationsController < DeviseController
   def create
     build_resource(sign_up_params)
 
-    resource.save
+    r = resource_class.where(email: resource.email).first
+
+    if r and r.provider != 'email' #register before !
+      r.provider = 'email'
+      r.email = resource.email
+      r.encrypted_password = resource.encrypted_password
+      r.save!
+      resource = r
+    else
+      resource.save
+    end
+    
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
