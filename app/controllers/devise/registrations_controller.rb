@@ -14,7 +14,7 @@ class Devise::RegistrationsController < DeviseController
 
   # POST /resource
   def create
-    build_resource(sign_up_params)
+    resource = build_resource(sign_up_params)
 
     r = resource_class.where(email: resource.email).first
 
@@ -22,7 +22,7 @@ class Devise::RegistrationsController < DeviseController
       r.provider = 'email'
       r.email = resource.email
       r.encrypted_password = resource.encrypted_password
-      r.save!
+      r.save
       resource = r
     else
       resource.save
