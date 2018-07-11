@@ -9,7 +9,7 @@ This README is [also available in a friendly navigable format](http://devise.pla
 
 Devise is a flexible authentication solution for Rails based on Warden. It:
 
-* Is Rack based;
+* Is Rack based; 
 * Is a complete MVC solution based on Rails engines;
 * Allows you to have multiple models signed in at the same time;
 * Is based on a modularity concept: use only what you really need.
